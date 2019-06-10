@@ -1,6 +1,7 @@
 package com.github.acikima.testmsauth;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,36 +38,57 @@ public class MainActivity extends Activity {
 
     /* UI & Debugging Variables */
     private static final String TAG = MainActivity.class.getSimpleName();
-    Button callGraphButton;
-    Button signOutButton;
+//    Button callGraphButton;
+//    Button signOutButton;
 
     /* Azure AD Variables */
     private PublicClientApplication sampleApp;
     private IAuthenticationResult authResult;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_main);
 
-        callGraphButton = (Button) findViewById(R.id.callGraph);
-        signOutButton = (Button) findViewById(R.id.clearCache);
+//        callGraphButton = (Button) findViewById(R.id.callGraph);
+//        signOutButton = (Button) findViewById(R.id.clearCache);
+//
+//        callGraphButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                onCallGraphClicked();
+//            }
+//        });
+//
+//        signOutButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                onSignOutClicked();
+//            }
+//        });
 
-        callGraphButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                onCallGraphClicked();
-            }
-        });
+        /* Configure your sample app and save state for this activity */
+//        sampleApp = new PublicClientApplication(
+//                this.getApplicationContext(),
+//                R.raw.auth_config);
 
-        signOutButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                onSignOutClicked();
-            }
-        });
+        /* Attempt to get a user and acquireTokenSilent */
+//        sampleApp.getAccounts(new PublicClientApplication.AccountsLoadedCallback() {
+//            @Override
+//            public void onAccountsLoaded(final List<IAccount> accounts) {
+//                if (!accounts.isEmpty()) {
+//                    /* This sample doesn't support multi-account scenarios, use the first account */
+//                    sampleApp.acquireTokenSilentAsync(SCOPES, accounts.get(0), getAuthSilentCallback());
+//                } else {
+//                    /* No accounts */
+//                }
+//            }
+//        });
+//    }
+
+    public MainActivity(Context context){
 
         /* Configure your sample app and save state for this activity */
         sampleApp = new PublicClientApplication(
-                this.getApplicationContext(),
+                context,
                 R.raw.auth_config);
 
         /* Attempt to get a user and acquireTokenSilent */
@@ -81,29 +103,32 @@ public class MainActivity extends Activity {
                 }
             }
         });
+
+        onCallGraphClicked();
+
     }
 
     /* Set the UI for successful token acquisition data */
-    private void updateSuccessUI() {
-        callGraphButton.setVisibility(View.INVISIBLE);
-        signOutButton.setVisibility(View.VISIBLE);
-        findViewById(R.id.welcome).setVisibility(View.VISIBLE);
-        ((TextView) findViewById(R.id.welcome)).setText("Welcome, " +
-                authResult.getAccount().getUsername());
-        findViewById(R.id.graphData).setVisibility(View.VISIBLE);
-    }
+//    private void updateSuccessUI() {
+//        callGraphButton.setVisibility(View.INVISIBLE);
+//        signOutButton.setVisibility(View.VISIBLE);
+//        findViewById(R.id.welcome).setVisibility(View.VISIBLE);
+//        ((TextView) findViewById(R.id.welcome)).setText("Welcome, " +
+//                authResult.getAccount().getUsername());
+//        findViewById(R.id.graphData).setVisibility(View.VISIBLE);
+//    }
 
     /* Set the UI for signed out account */
-    private void updateSignedOutUI() {
-        callGraphButton.setVisibility(View.VISIBLE);
-        signOutButton.setVisibility(View.INVISIBLE);
-        findViewById(R.id.welcome).setVisibility(View.INVISIBLE);
-        findViewById(R.id.graphData).setVisibility(View.INVISIBLE);
-        ((TextView) findViewById(R.id.graphData)).setText("No Data");
-
-        Toast.makeText(getBaseContext(), "Signed Out!", Toast.LENGTH_SHORT)
-                .show();
-    }
+//    private void updateSignedOutUI() {
+//        callGraphButton.setVisibility(View.VISIBLE);
+//        signOutButton.setVisibility(View.INVISIBLE);
+//        findViewById(R.id.welcome).setVisibility(View.INVISIBLE);
+//        findViewById(R.id.graphData).setVisibility(View.INVISIBLE);
+//        ((TextView) findViewById(R.id.graphData)).setText("No Data");
+//
+//        Toast.makeText(getBaseContext(), "Signed Out!", Toast.LENGTH_SHORT)
+//                .show();
+//    }
 
     /* Use MSAL to acquireToken for the end-user
      * Callback will call Graph api w/ access token & update UI
@@ -135,7 +160,7 @@ public class MainActivity extends Activity {
                 callGraphAPI();
 
                 /* update the UI to post call graph state */
-                updateSuccessUI();
+//                updateSuccessUI();
             }
 
             @Override
@@ -179,7 +204,7 @@ public class MainActivity extends Activity {
                 callGraphAPI();
 
                 /* update the UI to post call graph state */
-                updateSuccessUI();
+//                updateSuccessUI();
             }
 
             @Override
@@ -234,7 +259,7 @@ public class MainActivity extends Activity {
                     }
                 }
 
-                updateSignedOutUI();
+//                updateSignedOutUI();
             }
         });
     }
@@ -261,7 +286,7 @@ public class MainActivity extends Activity {
                 /* Successfully called graph, process data and send to UI */
                 Log.d(TAG, "Response: " + response.toString());
 
-                updateGraphUI(response);
+//                updateGraphUI(response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -287,8 +312,8 @@ public class MainActivity extends Activity {
     }
 
     /* Sets the graph response */
-    private void updateGraphUI(JSONObject graphResponse) {
-        TextView graphText = findViewById(R.id.graphData);
-        graphText.setText(graphResponse.toString());
-    }
+//    private void updateGraphUI(JSONObject graphResponse) {
+//        TextView graphText = findViewById(R.id.graphData);
+//        graphText.setText(graphResponse.toString());
+//    }
 }
