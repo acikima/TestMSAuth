@@ -104,7 +104,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        onCallGraphClicked();
+//        onCallGraphClicked();
 
     }
 
