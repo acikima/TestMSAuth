@@ -291,7 +291,7 @@ public class MainActivity extends Activity {
                 /* Successfully called graph, process data and send to UI */
                 Log.d(TAG, "Response: " + response.toString());
 
-//                updateGraphUI(response);
+                updateGraphUI(response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -314,11 +314,15 @@ public class MainActivity extends Activity {
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(request);
+
+
+
     }
 
     /* Sets the graph response */
-//    private void updateGraphUI(JSONObject graphResponse) {
+    private void updateGraphUI(JSONObject graphResponse) {
+        Toast.makeText(this, graphResponse.toString(), Toast.LENGTH_LONG).show();
 //        TextView graphText = findViewById(R.id.graphData);
 //        graphText.setText(graphResponse.toString());
-//    }
+    }
 }
