@@ -137,8 +137,9 @@ public class MainActivity extends Activity {
         Toast.makeText(context, "U made it Imaaaa", Toast.LENGTH_LONG).show();
     }
 
-    public void onCallGraphClicked() {
-        sampleApp.acquireToken(getActivity(), SCOPES, getAuthInteractiveCallback());
+    public void onCallGraphClicked(Activity activity) {
+//        sampleApp.acquireToken(getActivity(), SCOPES, getAuthInteractiveCallback());
+        sampleApp.acquireToken(activity, SCOPES, getAuthInteractiveCallback());
     }
 
     public Activity getActivity() {
