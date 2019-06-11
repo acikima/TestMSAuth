@@ -136,8 +136,8 @@ public class MainActivity extends Activity {
     public void showToast(Context context){
         Toast.makeText(context, "U made it Imaaaa", Toast.LENGTH_LONG).show();
     }
-    
-    private void onCallGraphClicked() {
+
+    public void onCallGraphClicked() {
         sampleApp.acquireToken(getActivity(), SCOPES, getAuthInteractiveCallback());
     }
 
@@ -149,7 +149,7 @@ public class MainActivity extends Activity {
      * Looks if tokens are in the cache (refreshes if necessary and if we don't forceRefresh)
      * else errors that we need to do an interactive request.
      */
-    private AuthenticationCallback getAuthSilentCallback() {
+    public AuthenticationCallback getAuthSilentCallback() {
         return new AuthenticationCallback() {
 
             @Override
@@ -192,7 +192,7 @@ public class MainActivity extends Activity {
     /* Callback used for interactive request.  If succeeds we use the access
      * token to call the Microsoft Graph. Does not check cache
      */
-    private AuthenticationCallback getAuthInteractiveCallback() {
+    public AuthenticationCallback getAuthInteractiveCallback() {
         return new AuthenticationCallback() {
 
             @Override
@@ -235,7 +235,7 @@ public class MainActivity extends Activity {
      * Logically similar to "sign out" but only signs out of this app.
      * User will get interactive SSO if trying to sign back-in.
      */
-    private void onSignOutClicked() {
+    public void onSignOutClicked() {
         /* Attempt to get a user and acquireTokenSilent
          * If this fails we do an interactive request
          */
@@ -269,7 +269,7 @@ public class MainActivity extends Activity {
     }
 
     /* Use Volley to make an HTTP request to the /me endpoint from MS Graph using an access token */
-    private void callGraphAPI() {
+    public void callGraphAPI() {
         Log.d(TAG, "Starting volley request to graph");
 
         /* Make sure we have a token to send to graph */
