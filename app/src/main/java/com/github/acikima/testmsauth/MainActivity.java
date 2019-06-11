@@ -36,6 +36,8 @@ public class MainActivity extends Activity {
     final static String SCOPES [] = {"https://graph.microsoft.com/User.Read"};
     final static String MSGRAPH_URL = "https://graph.microsoft.com/v1.0/me";
 
+    public String userInfo;
+
     /* UI & Debugging Variables */
     private static final String TAG = MainActivity.class.getSimpleName();
 //    Button callGraphButton;
@@ -137,9 +139,11 @@ public class MainActivity extends Activity {
         Toast.makeText(context, "U made it Imaaaa", Toast.LENGTH_LONG).show();
     }
 
-    public void onCallGraphClicked(Activity activity) {
+    public String onCallGraphClicked(Activity activity) {
 //        sampleApp.acquireToken(getActivity(), SCOPES, getAuthInteractiveCallback());
         sampleApp.acquireToken(activity, SCOPES, getAuthInteractiveCallback());
+
+        return userInfo;
     }
 
     public Activity getActivity() {
@@ -322,6 +326,7 @@ public class MainActivity extends Activity {
     /* Sets the graph response */
     private void updateGraphUI(JSONObject graphResponse) {
         Toast.makeText(this, graphResponse.toString(), Toast.LENGTH_LONG).show();
+        userInfo = graphResponse.toString();
 //        TextView graphText = findViewById(R.id.graphData);
 //        graphText.setText(graphResponse.toString());
     }
