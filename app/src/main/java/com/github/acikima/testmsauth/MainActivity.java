@@ -133,6 +133,10 @@ public class MainActivity extends Activity {
     /* Use MSAL to acquireToken for the end-user
      * Callback will call Graph api w/ access token & update UI
      */
+    public void showToast(Context context){
+        Toast.makeText(context, "U made it Imaaaa", Toast.LENGTH_LONG).show();
+    }
+    
     private void onCallGraphClicked() {
         sampleApp.acquireToken(getActivity(), SCOPES, getAuthInteractiveCallback());
     }
