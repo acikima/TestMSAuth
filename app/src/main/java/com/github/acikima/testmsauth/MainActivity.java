@@ -232,6 +232,7 @@ public class MainActivity extends Activity {
             public void onCancel() {
                 /* User cancelled the authentication */
                 Log.d(TAG, "User cancelled login.");
+                userInfo = "User cancelled login.";
             }
         };
     }
