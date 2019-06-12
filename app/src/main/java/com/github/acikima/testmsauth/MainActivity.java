@@ -276,60 +276,57 @@ public class MainActivity extends Activity {
     /* Use Volley to make an HTTP request to the /me endpoint from MS Graph using an access token */
     public void callGraphAPI() {
         Log.d(TAG, "Starting volley request to graph");
-        updateGraphUI();
 
-//        /* Make sure we have a token to send to graph */
-//        if (authResult.getAccessToken() == null) {return;}
-//
-//        RequestQueue queue = Volley.newRequestQueue(this);
-//        JSONObject parameters = new JSONObject();
-//
-//        try {
-//            parameters.put("key", "value");
-//        } catch (Exception e) {
-//            Log.d(TAG, "Failed to put parameters: " + e.toString());
-//        }
-//        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, MSGRAPH_URL,
-//                parameters,new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject response) {
-//                /* Successfully called graph, process data and send to UI */
-//                Log.d(TAG, "Response: " + response.toString());
-//
-//                updateGraphUI(response);
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.d(TAG, "Error: " + error.toString());
-//            }
-//        }) {
-//            @Override
-//            public Map<String, String> getHeaders() {
-//                Map<String, String> headers = new HashMap<>();
-//                headers.put("Authorization", "Bearer " + authResult.getAccessToken());
-//                return headers;
-//            }
-//        };
-//
-//        Log.d(TAG, "Adding HTTP GET to Queue, Request: " + request.toString());
-//
-//        request.setRetryPolicy(new DefaultRetryPolicy(
-//                3000,
-//                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-//                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-//        queue.add(request);
+        /* Make sure we have a token to send to graph */
+        if (authResult.getAccessToken() == null) {return;}
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        JSONObject parameters = new JSONObject();
+
+        try {
+            parameters.put("key", "value");
+        } catch (Exception e) {
+            Log.d(TAG, "Failed to put parameters: " + e.toString());
+        }
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, MSGRAPH_URL,
+                parameters,new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                /* Successfully called graph, process data and send to UI */
+                Log.d(TAG, "Response: " + response.toString());
+
+                updateGraphUI(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "Error: " + error.toString());
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + authResult.getAccessToken());
+                return headers;
+            }
+        };
+
+        Log.d(TAG, "Adding HTTP GET to Queue, Request: " + request.toString());
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        queue.add(request);
 
 
 
     }
 
     /* Sets the graph response */
-//    private void updateGraphUI(JSONObject graphResponse) {
-
-        private void updateGraphUI() {
-        Toast.makeText(this, "arrived here", Toast.LENGTH_LONG).show();
-        userInfo = "set user info";
+    private void updateGraphUI(JSONObject graphResponse) {
+        Toast.makeText(this, graphResponse.toString(), Toast.LENGTH_LONG).show();
+        userInfo = graphResponse.toString();
 //        TextView graphText = findViewById(R.id.graphData);
 //        graphText.setText(graphResponse.toString());
     }
