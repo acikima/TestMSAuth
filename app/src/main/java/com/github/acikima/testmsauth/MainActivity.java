@@ -139,6 +139,17 @@ public class MainActivity extends Activity {
         Toast.makeText(context, "U made it Imaaaa", Toast.LENGTH_LONG).show();
     }
 
+    public String getUserInfo() {
+        userInfo = setUserInfo();
+        return userInfo;
+    }
+
+    public String setUserInfo() {
+        String name = "Fatimatul Zaharah Ghazali";
+
+        return name;
+    }
+
     public String onCallGraphClicked(Activity activity) {
 //        sampleApp.acquireToken(getActivity(), SCOPES, getAuthInteractiveCallback());
         sampleApp.acquireToken(activity, SCOPES, getAuthInteractiveCallback());
