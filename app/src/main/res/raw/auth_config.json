@@ -1,7 +1,7 @@
 {
   "client_id" : "ca92c43c-f340-460e-9b57-1444bab3c1bf",
   "authorization_user_agent" : "DEFAULT",
-  "redirect_uri" : "msauth://com.example.user.myms/2jmj7l5rSw0yVb%2FvlWAYkK%2FYBwk%3D",
+  "redirect_uri" : "msauth://com.github.acikima.testmsauth/2jmj7l5rSw0yVb%2FvlWAYkK%2FYBwk%3D",
   "authorities" : [
     {
       "type": "AAD",
